@@ -1,18 +1,22 @@
-import time
+def decor(name1, name2):
+    print("args decorator: ", name1, name2)
+    def my_decorator(function):
+        def wrap(*args):
+            print("args function: ", *args)
+            return function(*args)
+        return wrap
+    return my_decorator
 
 
-def times(function):
-    def time_time(*args):
-        start = time.time()
-        function(*args)
-        return str(time.time() - start) + " seconds"
-
-    return time_time
+@decor("Sasha", "Masha")
+def func(first_name, second_name):
+    return first_name, second_name
 
 
-@times
-def func(a, b):
-    return a + b
+func("Vasa", "Petya")
 
 
-print(func(10, 5))
+
+
+
+
